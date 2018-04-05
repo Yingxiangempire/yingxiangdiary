@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/image','ImageconductController@index');
+Route::get('/test','ImageconductController@test');
