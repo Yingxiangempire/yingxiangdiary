@@ -16,3 +16,8 @@ Route::get('/', function () {
 });
 Route::get('/image','ImageconductController@index');
 Route::get('/test','ImageconductController@test');
+Route::get('/img','ImageconductController@getDateImage');
+Route::get('/quick','ImageconductController@getQuickStyleImg');
+Route::get('/visit','ImageconductController@getVisitPics');
+Route::get('/think','ImageconductController@getThinkPic');
+Route::get('/hope','ImageconductController@getHopePic');

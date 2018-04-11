@@ -66,6 +66,13 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+
+
+            <div id="app">
+                <example-component>
+
+                </example-component>
+            </div>
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -91,5 +98,9 @@
                 </div>
             </div>
         </div>
+        <script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+        <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//cdn.bootcss.com/vue/2.0.0-rc.5/vue.min.js"></script>
+        <script src="{{mix('/js/app.js')}}"></script>
     </body>
 </html>

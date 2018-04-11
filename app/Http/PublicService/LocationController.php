@@ -17,7 +17,7 @@ class LocationController extends Controller
 
 
     /**
-     * 根据IP获取地理位置
+     * 根据IP获取地理位置   
      *
      * @param $ip
      * @return mixed
@@ -64,6 +64,8 @@ class LocationController extends Controller
         }
 
     }
+    
+    
 
 
 }
