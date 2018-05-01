@@ -11,5 +11,17 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
+mix.js('node_modules/jquery/dist/jquery.js', 'public/js')
+    .js('resources/assets/js/app.js', 'public/js')
+    .less('node_modules/bootstrap/less/bootstrap.less', 'public/css')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+
+mix.webpackConfig({
+    resolve:{
+        alias: {
+            'vue-router$': 'vue-router/dist/vue-router.common.js',
+            'jQuery$': 'jquery/dist/jquery.js'
+        }
+    }
+});

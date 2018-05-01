@@ -423,7 +423,8 @@ class ImageConductController extends Controller
 //        return Response::make($content)->header('Content-Type', 'image/png');
 
 
-        $wl=$this->getWeatherAndLocation(1,'hao','江苏积极急地点');
+        $wl=$this->getWeatherAndLocation(1,'hao','江苏积极急地点','#FFFFFF',500);
+        $this->editor->resizeExactWidth($wl, 540);
         $this->editor->open($inputImage, base_path('Image') . '/visit/1.jpeg');
         $this->editor->resizeFill($inputImage, 640, 500);
         $this->editor->blend($inputImage, $wl, 'screen', 1, 'bottom-center', 0,0);
@@ -438,13 +439,16 @@ class ImageConductController extends Controller
      * @param $weatherString
      * @param $locationString
      * @param string $color
+     * @param int $width
+     * @param int $height
      * @return mixed
-     * @create_at 18/4/11 下午11:42
+     * @create_at 18/4/12 下午11:33
      * @author 王玉翔
      */
-    public function getWeatherAndLocation($weatherImgNum,$weatherString,$locationString,$color='#FFFFFF')
+    public function getWeatherAndLocation($weatherImgNum,$weatherString,$locationString,$color='#FFFFFF',$width=640,$height=72)
     {
-        $this->editor->open($wl, base_path('Image') . '/base/transparencybase.jpg');//获取透明背景图片
+        $this->editor->open($wl, base_path('Image') . '/base/transparency.png');//获取透明背景图片
+        $this->editor->resizeExact($wl, $width, $height);//等宽缩放
         $this->editor->open($location, base_path('Image') . '/location.png');
         $this->editor->open($weather, base_path('Image') . '/weathercn/' . $weatherImgNum . '.png');
         $this->editor->resizeFit($location, 40, 40);
@@ -453,7 +457,7 @@ class ImageConductController extends Controller
         $this->editor->blend($wl, $location, 'normal', 1, 'bottom-right', -20-mb_strlen($locationString)*14, -5);
         $this->editor->text($wl, $weatherString, 13, 55, 45, new Color($color),
             base_path('Image') . '/ttf/wryh.ttf', 0);
-        $this->editor->text($wl, $locationString, 13, 620-mb_strlen($locationString)*14, 40, new Color($color),
+        $this->editor->text($wl, $locationString, 13, $width-20-mb_strlen($locationString)*14, 40, new Color($color),
             base_path('Image') . '/ttf/wryh.ttf', 0);
         return $wl;
     }
